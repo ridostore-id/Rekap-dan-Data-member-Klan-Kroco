@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="id"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Rekap dan Data Member Rudal Penceng</title>
+<title>Rekap dan Data Member Klan Kroco</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0f1520">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Rudal Penceng">
+<meta name="apple-mobile-web-app-title" content="Klan Kroco">
 <style>
 *{box-sizing:border-box}body{margin:0;font:14px Arial,sans-serif;background:#0f1520;color:#e6edf6}
 h2{margin:0 0 8px;font-size:16px}.w{max-width:900px;margin:auto;padding:12px}
@@ -20,22 +20,22 @@ th{background:#1f3864;position:sticky;top:0}td.l{text-align:left}.top{background
 .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.hd button{width:auto;padding:7px 12px}
 .e{color:#ff7b72;min-height:18px}input:disabled{opacity:.55}small{color:#8da2c0}
 </style></head><body>
-<div class="w" id="login" hidden><div class="c" style="text-align:center"><img src="logo.png" alt="Rudal Penceng" style="width:220px;max-width:75%;display:block;margin:0 auto 6px"><h2>Rekap dan Data Member Rudal Penceng</h2>
+<div class="w" id="login" hidden><div class="c"><h2>Rekap dan Data Member Klan Kroco</h2>
 <form id="lf"><input id="em" type="email" placeholder="Email" required autocomplete="username">
 <input id="pw" type="password" placeholder="Password" required autocomplete="current-password">
 <button>Masuk</button></form><button class="g" type="button" onclick="backPublic()">Kembali ke tampilan publik</button><div class="e" id="le"></div></div></div>
 <div class="w" id="app" hidden>
-<div class="hd"><div style="display:flex;align-items:center;gap:10px;min-width:0"><img src="logo.png" alt="Rudal Penceng" style="width:52px;height:52px;flex:none"><h2 style="margin:0">Rekap dan Data Member Rudal Penceng</h2></div><button class="g" id="hb">Login Admin</button></div>
+<div class="hd"><h2>⚔️ Rekap dan Data Member Klan Kroco</h2><button class="g" id="hb">Login Admin</button></div>
 <div class="tabs" id="tabs"></div><div id="view"></div></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script>
-const SUPABASE_URL='https://taffistnkxpbutvwxeyo.supabase.co';
-const SUPABASE_KEY='sb_publishable_v0AlfdNusuQUBDIsNWR-Aw_VkcuDOIR'; // Project Settings > API Keys > anon / publishable key
+const SUPABASE_URL='https://gfpazpojmkdxzryqnfkw.supabase.co';
+const SUPABASE_KEY='sb_publishable_pyhoxrTabg800c4JNUZ5dQ_Ygz3hTgO'; // Project Settings > API Keys > anon / publishable key
 const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let members=[],attacks=[],tab='rekap',loaded=false,last={d:new Date().toISOString().slice(0,10),o:'',m:''};
-let cfg={min:2,pct:60};
+let cfg={min:4,pct:60};
 const TABS=[['rekap','Rekap'],['atk','Serangan'],['mem','Member'],['csv','CSV']];
 const normTag=t=>{t=String(t||'').toUpperCase().replace(/\s/g,'').replace(/O/g,'0');return t?(t[0]=='#'?t:'#'+t):''};
 
