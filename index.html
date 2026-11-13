@@ -85,7 +85,7 @@ async function addAtk(){
  attacks.push(...data);render();
 }
 function vMem(){
- const list=members.map(m=>`<tr><td class="l">${esc(m.name)}</td><td>${esc(m.tag)}</td><td>${esc(m.role)}</td><td><button class="g" style="padding:5px" onclick="togStat('${m.id}')">${m.status}</button></td><td><button class="r" onclick="delRow('coc_members','${m.id}')">✕</button></td></tr>`).join('');
+ const list=members.map(m=>`<tr><td class="l">${esc(m.name)}</td><td>${esc(m.tag)}</td><td><select style="width:auto;margin:0;padding:5px" onchange="setRole('${m.id}',this.value)">${['Member','Elder','Co-Leader','Leader'].map(r=>`<option ${r==m.role?'selected':''}>${r}</option>`).join('')}</select></td><td><button class="g" style="padding:5px" onclick="togStat('${m.id}')">${m.status}</button></td><td><button class="r" onclick="delRow('coc_members','${m.id}')">✕</button></td></tr>`).join('');
  return`<div class="c"><h2>Tambah member</h2><div class="row"><input id="mn" placeholder="Nama"><input id="mt" placeholder="Tagar #P2YLQ8R"></div>
  <div class="row"><input id="mh" type="number" placeholder="Town Hall"><select id="mr"><option>Member</option><option>Elder</option><option>Co-Leader</option><option>Leader</option></select></div>
  <button onclick="addMem()">Simpan</button></div>
@@ -96,6 +96,7 @@ async function addMem(){
  const{data,error}=await sb.from('coc_members').insert({name,tag,th:+$('mh').value||null,role:$('mr').value}).select();
  if(error)return alert(error.code=='23505'?'Tagar sudah ada':error.message);members.push(...data);render();
 }
+async function setRole(id,r){const m=members.find(x=>x.id==id),old=m.role;const{error}=await sb.from('coc_members').update({role:r}).eq('id',id);if(error){alert(error.message);m.role=old;return render()}m.role=r}
 async function togStat(id){const m=members.find(x=>x.id==id),s=m.status=='Aktif'?'Keluar':'Aktif';const{error}=await sb.from('coc_members').update({status:s}).eq('id',id);if(error)return alert(error.message);m.status=s;render()}
 async function delRow(t,id){
  if(!confirm(t=='coc_members'?'Hapus member beserta seluruh riwayat serangannya?':'Hapus serangan ini?'))return;
