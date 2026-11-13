@@ -2,6 +2,12 @@
 <html lang="id"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Rekap dan Data Member Klan Kroco</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f1520">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Klan Kroco">
 <style>
 *{box-sizing:border-box}body{margin:0;font:14px Arial,sans-serif;background:#0f1520;color:#e6edf6}
 h2{margin:0 0 8px;font-size:16px}.w{max-width:900px;margin:auto;padding:12px}
@@ -124,4 +130,5 @@ async function impAtk(inp){const x=await readCsv(inp);if(!x)return;const{rows,co
   out.push({member_id:id,war_date:fixD(g(r,'tanggal')),opponent:g(r,'lawan')||null,attack_no:[1,2].includes(+g(r,'serangan'))?+g(r,'serangan'):null,stars:s,percent:p>=0&&p<=100?p:null})});
  for(let i=0;i<out.length;i+=500){const{error}=await sb.from('coc_attacks').insert(out.slice(i,i+500));if(error)return alert(error.message)}
  await load();alert(out.length+' serangan diimpor, '+skip+' dilewati')}
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 </script></body></html>
